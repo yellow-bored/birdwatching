@@ -1,0 +1,6 @@
+/* pages/launch/launch.wxss */
+camera, .camera { width: 100vw; height: 100vh; display: block; }
+.bar { position: fixed; bottom: 10vh; left: 0; right: 0; display: flex; justify-content: space-around; }
+.btn { width: 200rpx; height: 80rpx; line-height: 80rpx; text-align: center; color: #fff; background: #07c160; border-radius: 40rpx; }
+.cancel { background: #666; }
+.ok { background: #07c160; }

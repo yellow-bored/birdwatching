@@ -1,0 +1,17 @@
+<scroll-view scroll-y style="height:100vh;">
+  <view class="fall">
+    <block wx:for="{{list}}" wx:key="id">
+      <view class="card" bindtap="goDetail" data-id="{{item.id}}">
+        <image src="{{item.cover}}" mode="aspectFill" class="cover" />
+        <view class="info">
+          <text class="title">{{item.title}}</text>
+          <view class="meta">
+            <image src="{{item.avatar}}" class="avatar" />
+            <text class="name">{{item.author}}</text>
+            <text class="likes">❤ {{item.likes}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</scroll-view>

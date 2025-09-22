@@ -1,0 +1,11 @@
+<!--pages/launch/launch.wxml-->
+<camera wx:if="{{!preview}}" id="camera" class="camera" device-position="back" />
+<image wx:else src="{{preview}}" class="camera" mode="aspectFill" />
+
+<cover-view class="bar">
+  <cover-view wx:if="{{!preview}}" class="btn" bindtap="takePhoto">拍照</cover-view>
+  <cover-view wx:else>
+    <cover-view class="btn cancel" bindtap="back">返回</cover-view>
+    <cover-view class="btn ok" bindtap="upload">确定</cover-view>
+  </cover-view>
+</cover-view>

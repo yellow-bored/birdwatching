@@ -1,0 +1,63 @@
+/* 社区页 - 小红书风 */
+.fall {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 16rpx;
+    padding: 16rpx;
+    background: #f8f8f8;        /* 浅灰背景 */
+  }
+  
+  .card {
+    width: 48%;                /* 两列 */
+    background: #fff;
+    border-radius: 16rpx;
+    overflow: hidden;
+    box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.06);
+    margin-bottom: 16rpx;
+  }
+  
+  .cover {
+    width: 100%;
+    height: 400rpx;            /* 3:4 比例封面 */
+    display: block;
+  }
+  
+  .info {
+    padding: 16rpx;
+  }
+  
+  .title {
+    font-size: 28rpx;
+    color: #333;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 12rpx;
+  }
+  
+  .meta {
+    display: flex;
+    align-items: center;
+    font-size: 24rpx;
+    color: #999;
+  }
+  
+  .avatar {
+    width: 32rpx;
+    height: 32rpx;
+    border-radius: 50%;
+    margin-right: 8rpx;
+  }
+  
+  .name {
+    flex: 1;
+  }
+  
+  .likes {
+    margin-left: auto;
+    color: #ff4757;
+  }

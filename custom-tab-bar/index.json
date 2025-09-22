@@ -1,0 +1,6 @@
+{
+    "component": true,
+    "usingComponents": {
+      "t-icon": "../miniprogramRoot/miniprogram_npm/tdesign-miniprogram/icon/icon"
+    }
+  }
