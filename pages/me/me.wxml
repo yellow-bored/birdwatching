@@ -1,2 +1,18 @@
 <!--pages/me/me.wxml-->
-<text>pages/me/me.wxml</text>
+<view>
+  <block wx:if="{{loading}}">
+    <text>正在加载用户信息...</text>
+  </block>
+  <block wx:elif="{{error}}">
+    <text style="color:red">{{error}}</text>
+  </block>
+  <block wx:elif="{{userInfo}}">
+    <image src="{{userInfo.avatar}}" style="width:100px;height:100px;border-radius:50%" />
+    <view>
+      <text>昵称：{{userInfo.nickname}}</text>
+    </view>
+    <view>
+      <text>邮箱：{{userInfo.email}}</text>
+    </view>
+  </block>
+</view>

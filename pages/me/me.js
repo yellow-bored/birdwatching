@@ -1,18 +1,48 @@
 // pages/me/me.js
+// 对应小程序页面中“我的”页面
+const { BASE_URL } = require('../../utils/config');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    userInfo: null,
+    loading: true,
+    error: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    var that = this; // 保存this引用，供回调函数使用
+    // 页面加载时请求用户信息
+    wx.request({
+      url: BASE_URL + '/userinfo', // 统一后端地址，接口路径不同
+      method: 'GET',
+      success(res) {
+        if(res.statusCode === 200 && res.data){
+          that.setData({
+            userInfo: res.data,
+            loading: false,
+            error: ''
+          });
+        }else{
+          that.setData({
+            loading: false,
+            error: '获取用户信息失败'
+          });
+        }
+      },
+      fail(){
+        that.setData({
+          loading: false,
+          error: '网络错误，获取用户信息失败'
+        });
+      }
+    });
   },
 
   /**
