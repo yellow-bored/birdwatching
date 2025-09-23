@@ -17,29 +17,54 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    var that = this; // 保存this引用，供回调函数使用
-    // 页面加载时请求用户信息
-    wx.request({
-      url: BASE_URL + '/userinfo', // 统一后端地址，接口路径不同
-      method: 'GET',
-      success(res) {
-        if(res.statusCode === 200 && res.data){
-          that.setData({
-            userInfo: res.data,
-            loading: false,
-            error: ''
+    var that = this; // 保存 this 引用
+    // 调用微信登录接口
+    wx.login({
+      success(loginRes) {
+        if (loginRes.code) {
+          wx.request({
+            url: BASE_URL + '/userinfo', // 后端统一地址
+            method: 'POST',
+            data: {
+              code: loginRes.code // 发送 code 到后端
+            },
+            success(res) {
+              if(res.statusCode === 200 && res.data){
+                // 假设后端返回 { openid, userInfo }
+                that.setData({
+                  userInfo: res.data.userInfo || res.data,
+                  loading: false,
+                  error: ''
+                });
+                // 可选：将 openid 存储到本地
+                // if(res.data.openid){
+                //   wx.setStorageSync('openid', res.data.openid);
+                // }
+              }else{
+                that.setData({
+                  loading: false,
+                  error: '获取用户信息失败'
+                });
+              }
+            },
+            fail(){
+              that.setData({
+                loading: false,
+                error: '网络错误，获取用户信息失败'
+              });
+            }
           });
-        }else{
+        } else {
           that.setData({
             loading: false,
-            error: '获取用户信息失败'
+            error: '微信登录失败，未获取到code'
           });
         }
       },
-      fail(){
+      fail() {
         that.setData({
           loading: false,
-          error: '网络错误，获取用户信息失败'
+          error: '微信登录失败'
         });
       }
     });
