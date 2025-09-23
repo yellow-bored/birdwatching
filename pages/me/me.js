@@ -17,29 +17,33 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    var that = this; // 保存 this 引用
-    // 调用微信登录接口
+    var that = this;
+    that.setData({
+      loading: true,
+      error: '',
+      userInfo: null
+    });
     wx.login({
       success(loginRes) {
         if (loginRes.code) {
           wx.request({
-            url: BASE_URL + '/userinfo', // 后端统一地址
+            url: BASE_URL + '/userinfo',
             method: 'POST',
             data: {
-              code: loginRes.code // 发送 code 到后端
+              wxcode: loginRes.code
             },
             success(res) {
               if(res.statusCode === 200 && res.data){
-                // 假设后端返回 { openid, userInfo }
+                let tip = '';
+                // 如果后端返回 isNew 字段，提示自动注册
+                if(res.data.isNew){
+                  tip = '首次登录，已自动注册';
+                }
                 that.setData({
-                  userInfo: res.data.userInfo || res.data,
+                  userInfo: res.data.userInfo,
                   loading: false,
-                  error: ''
+                  error: tip
                 });
-                // 可选：将 openid 存储到本地
-                // if(res.data.openid){
-                //   wx.setStorageSync('openid', res.data.openid);
-                // }
               }else{
                 that.setData({
                   loading: false,
