@@ -35,8 +35,8 @@ Page({
             success(res) {
               if(res.statusCode === 200 && res.data){
                 let tip = '';
-                // 如果后端返回 isNew 字段，提示自动注册
-                if(res.data.isNew){
+                // 如果后端返回 isnew 字段，提示自动注册
+                if(res.data.isnew){
                   tip = '首次登录，已自动注册';
                 }
                 that.setData({
