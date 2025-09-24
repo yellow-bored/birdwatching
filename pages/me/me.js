@@ -9,7 +9,8 @@ Page({
    */
   data: {
     userInfo: null,
-    loading: true,
+    hasUserInfo: false,
+    loading: false,
     error: ''
   },
 
@@ -128,5 +129,28 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+
+  /**
+   * 获取用户微信信息
+   */
+  getUserProfile() {
+    var that = this;
+    wx.getUserProfile({
+      desc: '用于完善个人资料',
+      success: function(res) {
+        that.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true,
+          error: ''
+        });
+      },
+      fail: function() {
+        that.setData({
+          error: '用户拒绝授权',
+          hasUserInfo: false
+        });
+      }
+    });
   }
 })

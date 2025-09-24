@@ -16,3 +16,28 @@
     </view>
   </block>
 </view>
+<view style="display: flex; flex-direction: column; height: 1302rpx; padding: 10px; margin-bottom: 10px; box-sizing: border-box">
+	<view style="background-color: #F1F1F1; height: 252rpx; display: block; box-sizing: border-box">
+		<image id="avatar" style="position: relative; width: 241rpx; height: 212rpx; display: inline-block; box-sizing: border-box; left: 43rpx; top: 21rpx" src="https://mmbiz.qpic.cn/mmbiz_png/icTdbqWNOwNQ0ia79enzYJBsZ3CIkLQGe39qeOxbpT9oM9KaCthzBa0PF75xzBGjZQGlM69TDggxpNX7ACibCjjtw/0?wx_fmt=png&t=1614824466" />
+	</view>
+	<view style="background-color: #E6E6E6; height: 697rpx; display: block; box-sizing: border-box; left: 0rpx; top: 0rpx"></view>
+	<view style="background-color: #F1F1F1; flex: 1;"></view>
+</view>
+<view>
+  <block wx:if="{{!hasUserInfo}}">
+    <button type="primary" bindtap="getUserProfile">微信一键登录</button>
+    <text style="color:red">{{error}}</text>
+  </block>
+  <block wx:if="{{hasUserInfo}}">
+    <image src="{{userInfo.avatarUrl}}" style="width:100px;height:100px;border-radius:50%" />
+    <view>
+      <text>昵称：{{userInfo.nickName}}</text>
+    </view>
+    <view>
+      <text>性别：{{userInfo.gender == 1 ? '男' : userInfo.gender == 2 ? '女' : '未知'}}</text>
+    </view>
+    <view>
+      <text>地区：{{userInfo.province}} {{userInfo.city}}</text>
+    </view>
+  </block>
+</view>
