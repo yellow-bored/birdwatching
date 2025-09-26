@@ -1,0 +1,24 @@
+<view class="page">
+  <!-- 原拍照片 -->
+  <image src="{{post.originCover}}" mode="aspectFill" class="cover" />
+
+  <!-- 官方结果 -->
+  <view class="meta">
+    <text class="title">{{title}}</text>
+    <text class="conf"> {{conf}}</text>
+    <view class="ident">
+      <text wx:for="{{ident}}" wx:key="*this" class="ident-item">
+            中文名：{{item.chinese_name}}  学名：{{item.scientific_name}}
+          </text>
+    </view>
+    <view class="box">
+      <text>坐标框：{{box.x1}}×{{box.y1}} → {{box.x2}}×{{box.y2}}</text>
+    </view>
+  </view>
+
+  <!-- 按钮 -->
+  <view class="actions">
+    <button class="btn cancel" bindtap="goBack">返回</button>
+    <button class="btn ok" bindtap="goPublish">发布</button>
+  </view>
+</view>

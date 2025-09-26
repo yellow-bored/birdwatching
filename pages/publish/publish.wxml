@@ -1,0 +1,16 @@
+<view class="page">
+  <image src="{{post.cover}}" mode="aspectFill" class="cover" />
+  <view class="form">
+    <input class="input" placeholder="编写标题" value="{{post.title}}" bindinput="onTitle" />
+    <textarea class="textarea" placeholder="编写内容" value="{{content}}" bindinput="onContent" />
+    <input class="input" placeholder="位置（可点击选择）" value="{{location}}" bindinput="onLocation" bindtap="chooseLocation" />
+    <view class="tags">
+      <text wx:for="{{post.tags}}" wx:key="*this" class="tag">{{item}}</text>
+    </view>
+  </view>
+
+  <view class="actions">
+    <button class="btn cancel" bindtap="goBack">取消</button>
+    <button class="btn ok" bindtap="doPublish">发布</button>
+  </view>
+</view>

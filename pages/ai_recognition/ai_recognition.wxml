@@ -1,11 +1,31 @@
-<!--pages/launch/launch.wxml-->
-<camera wx:if="{{!preview}}" id="camera" class="camera" device-position="back" />
+<camera wx:if="{{!preview && source==='camera'}}" device-position="back" class="camera" />
+
 <image wx:else src="{{preview}}" class="camera" mode="aspectFill" />
 
-<cover-view class="bar">
-  <cover-view wx:if="{{!preview}}" class="btn" bindtap="takePhoto">拍照</cover-view>
-  <cover-view wx:else>
-    <cover-view class="btn cancel" bindtap="back">返回</cover-view>
-    <cover-view class="btn ok" bindtap="upload">确定</cover-view>
-  </cover-view>
-</cover-view>
+<!-- 顶部返回 -->
+<view class="top-bar">
+  <t-icon name="arrow-left" size="48rpx" color="#fff" bindtap="goBack" />
+  <text class="title">{{source==='camera'?'拍照':'相册'}}</text>
+  <view class="placeholder"></view>
+</view>
+
+<!-- 底部双按钮 -->
+<view class="float-bar">
+    <block wx:if="{{!preview}}">
+    <t-icon name="image" size="64rpx" color="#fff" class="snap-btn" bindtap="chooseAlbum" />
+    <t-icon name="camera" size="64rpx" color="#fff" class="snap-btn" bindtap="takePhoto" />
+    <text class="snap-text">{{source==='camera'?'拍照':'选择'}}</text>
+  </block>
+
+  <block wx:else>
+    <!-- 预览态：返回 + 确定 -->
+    <button class="action-btn cancel" bindtap="back">返回</button>
+    <button class="action-btn ok" bindtap="upload">确定</button>
+  </block>
+</view>
+
+
+<view wx:if="{{loading}}" class="loading-mask">
+  <t-icon name="refresh" size="64rpx" color="#fff" class="rotate" />
+  <text class="loading-text">YOLO 识别中...</text>
+</view>

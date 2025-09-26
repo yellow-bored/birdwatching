@@ -1,6 +1,69 @@
 /* pages/launch/launch.wxss */
-camera, .camera { width: 100vw; height: 100vh; display: block; }
-.bar { position: fixed; bottom: 10vh; left: 0; right: 0; display: flex; justify-content: space-around; }
-.btn { width: 200rpx; height: 80rpx; line-height: 80rpx; text-align: center; color: #fff; background: #07c160; border-radius: 40rpx; }
-.cancel { background: #666; }
-.ok { background: #07c160; }
+page{ background:#000; }
+.camera{ width:100vw; height:100vh; }
+
+.top-bar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120rpx;
+  padding: 0 32rpx;
+  display: flex;
+  align-items: center;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(10rpx);
+  z-index: 9;
+}
+.top-bar .title{ flex:1; text-align:center; color:#fff; font-size:32rpx; }
+.top-bar .placeholder{ width:48rpx; }
+
+/* 底部悬浮按钮容器 */
+.float-bar {
+    position: fixed;
+    left: 50%;
+    bottom: calc(4vh + 4rpx);   /* 往上提：16vh + 16rpx */
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 24rpx;
+    z-index: 9;
+    padding-bottom: env(safe-area-inset-bottom); /* 避开系统下巴 */
+  }
+
+.snap-btn{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10rpx);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.snap-text{ color:#fff; font-size:24rpx; margin-top: 8rpx; }
+
+.action-btn{
+  width: 200rpx;
+  height: 88rpx;
+  border-radius: 44rpx;
+  text-align: center;
+  line-height: 88rpx;
+  font-size: 30rpx;
+}
+.cancel{ background: rgba(255,255,255,0.25); color: #fff; backdrop-filter: blur(10rpx); }
+.ok{ background: #07c160; color: #fff; }
+
+.loading-mask, .error-mask{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+}
+.loading-text, .error-text{ color:#fff; margin-top: 16rpx; font-size: 28rpx; }
+.rotate{ animation: rotate 1s linear infinite; }
+@keyframes rotate{ from{ transform: rotate(0deg); } to{ transform: rotate(360deg); } }

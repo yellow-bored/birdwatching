@@ -7,7 +7,9 @@
     "pages/logs/logs",
     "custom-tab-bar/custom-tab-bar",
     "pages/message/message",
-    "pages/me/me"
+    "pages/me/me",
+    "pages/result/result",
+    "pages/publish/publish"
   ],
   "permission": {
     "scope.camera": {
@@ -25,10 +27,10 @@
     "selectedColor": "#07c160",
     "backgroundColor": "#fafafa",
     "list": [
-        {
-            "pagePath": "pages/community/community",
-            "text": "社区"
-          },
+      {
+        "pagePath": "pages/community/community",
+        "text": "社区"
+      },
       {
         "pagePath": "pages/map/map",
         "text": "鸟类地图"
@@ -38,17 +40,19 @@
         "text": "识别"
       },
       {
-          "pagePath": "pages/message/message",
-          "text":"消息"
+        "pagePath": "pages/message/message",
+        "text": "消息"
       },
       {
         "pagePath": "pages/me/me",
-        "text":"我的"
-    }
-
+        "text": "我的"
+      }
     ]
   },
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
-  "lazyCodeLoading": "requiredComponents"
+  "lazyCodeLoading": "requiredComponents",
+  "usingComponents": {
+    "t-icon": "miniprogramRoot/miniprogram_npm/tdesign-miniprogram/icon/icon"
+  }
 }

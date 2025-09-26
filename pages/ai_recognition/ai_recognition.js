@@ -3,10 +3,12 @@ Page({
     data: {
         preview: '',      // 预览图
         filePath: '',     // 临时文件
-        serverIP: '10.135.8.83',   // ← 改成你电脑局域网IP
+        serverIP: '172.16.20.78',   // ← 改成你电脑局域网IP
         serverPort: '3000',
         uploadUrl: 'http://10.135.8.83:3000/upload',    // 自动生成
-        imgUrl: ''        // 上传后返回地址
+        imgUrl: '' ,       // 上传后返回地址
+        source: 'camera',   // camera | album
+
       },
       onLoad() {
         // 动态生成上传地址
@@ -20,7 +22,8 @@ Page({
         ctx.takePhoto({
           quality: 'high',
           success: (res) => {
-            this.setData({ preview: res.tempImagePath, filePath: res.tempImagePath });
+            this.setData({ preview: res.tempImagePath, filePath: res.tempImagePath   ,source: 'camera'
+        });
           },
           fail: console.error
         });
@@ -48,13 +51,16 @@ Page({
     filePath,
     name: 'file',
     success: (res) => {
+        console.log('=== 原始返回', res.data);
       wx.hideLoading();
       try {
         const obj = JSON.parse(res.data);
         if (obj.code === 0) {
           this.setData({ imgUrl: obj.data.url });
           wx.showToast({ title: '上传成功', icon: 'success' });
-          wx.previewImage({ urls: [obj.data.url] });
+          wx.navigateTo({
+            url: `/pages/result/result?json=${encodeURIComponent(JSON.stringify(obj.data.post))}`
+          });
         } else {
           wx.showToast({ title: '上传失败', icon: 'error' });
         }
@@ -71,6 +77,23 @@ Page({
       },
       
 
+ /* 相册入口 */
+ chooseAlbum() {
+    wx.chooseMedia({
+      count: 1,
+      mediaType: ['image'],
+      sourceType: ['album'],
+      success: (res) => {
+        console.log('=== 相册选到了', res.tempFiles[0].tempFilePath);
+        this.setData({
+          preview: res.tempFiles[0].tempFilePath,
+          filePath: res.tempFiles[0].tempFilePath,
+          source: 'album'
+        });
+      }
+    });
+  },
+  goBack() { wx.navigateBack(); },
 
   /**
    * 生命周期函数--监听页面显示

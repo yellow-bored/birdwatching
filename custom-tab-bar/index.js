@@ -5,14 +5,14 @@ Component({
         {
             "pagePath": "pages/community/community",
             "text": "社区",
-            icon: "camera",     // 未选中图标
-            selectedIcon: "camera" // 选中图标 (可以用不同的，如"home-filled")
+            icon: "earth",     // 未选中图标
+            selectedIcon: "earth" // 选中图标 (可以用不同的，如"home-filled")
           },
         {
             "pagePath": "pages/map/map",
             "text": "鸟类地图",
-            icon: "camera",     // 未选中图标
-            selectedIcon: "camera" // 选中图标 (可以用不同的，如"home-filled")
+            icon: "map-location",     // 未选中图标
+            selectedIcon: "map-location" // 选中图标 (可以用不同的，如"home-filled")
           },
           {
             "pagePath": "pages/ai_recognition/ai_recognition",
@@ -23,14 +23,14 @@ Component({
           {
             "pagePath": "pages/message/message",
             "text": "消息",
-            icon: "camera",     // 未选中图标
-            selectedIcon: "camera" // 选中图标 (可以用不同的，如"home-filled")
+            icon: "chat",     // 未选中图标
+            selectedIcon: "chat" // 选中图标 (可以用不同的，如"home-filled")
           },
           {
             "pagePath": "pages/me/me",
             "text": "我的",
-            icon: "camera",     // 未选中图标
-            selectedIcon: "camera" // 选中图标 (可以用不同的，如"home-filled")
+            icon: "user-1",     // 未选中图标
+            selectedIcon: "user-1" // 选中图标 (可以用不同的，如"home-filled")
           }
        
       ]

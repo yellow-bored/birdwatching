@@ -20,7 +20,7 @@ Page({
   fetchList() {
     if (!this.data.hasMore) return;
     wx.request({
-      url: `http://10.135.8.83:3000/api/posts`,
+      url: `http://172.16.20.78:3000/api/posts`,
       method: 'GET',
       data: { page: this.data.page, size: 20 },
       success: (res) => {
